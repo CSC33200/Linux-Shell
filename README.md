@@ -2,7 +2,7 @@
 
 list: Nabhan
 
-tree: Nan
+tree: Nan - `import "tree.h"` to access `tree()`
 
 path: Yuemin
 
