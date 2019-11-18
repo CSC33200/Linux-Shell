@@ -21,9 +21,9 @@ int main() {
 	//list of commands
 	char* ListOfOwnCmds[4];
 	ListOfOwnCmds[0] = "tree"; 
-    ListOfOwnCmds[1] = "list"; 
-    ListOfOwnCmds[2] = "path"; 
-    ListOfOwnCmds[3] = "exit"; 
+	ListOfOwnCmds[1] = "list"; 
+	ListOfOwnCmds[2] = "path"; 
+	ListOfOwnCmds[3] = "exit"; 
 	
 	
 	while(1) {
