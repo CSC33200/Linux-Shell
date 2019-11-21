@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include<string.h> 
 #include "tree.h"
-//#include "list.h"
+#include "list.h"
 #include "path.h"
 //#include "exit.h"
 
@@ -56,7 +56,7 @@ int main() {
 				tree();
 				break;
 			case 1:
-				printf("temp");
+				list();
 				break;
 			case 2:
 				path();
