@@ -11,20 +11,38 @@
 // Formats the timespect to a readable string in a date time format 
 char* formatTime(struct timespec time){
    char formatedDate[100];
-   strftime(formatedDate, 100 , "%b %d %y %R ", gmtime(&time.tv_sec));
+   strftime(formatedDate, 100 , "%b %d %y %R ", localtime(&time.tv_sec));
    return formatedDate;
 }
 
 // Format the struct stat with a file name and outputs to the file provided 
-char* formatString(FILE* output, struct stat buffer, char* name){
-   
-   fprintf(output,"%d ",buffer.st_nlink);
-   fprintf(output,"%s ", getpwuid(buffer.st_uid)->pw_name);
-   fprintf(output,"%s ",getgrgid(buffer.st_gid)->gr_name);
-   fprintf(output,"%d ",buffer.st_size);
-   fprintf(output,"%s ",formatTime(buffer.st_mtim));
-   fprintf(output,"%s\n",name);
+char* formatString(FILE* output, struct stat fileInfo, char* name){
 
+   // Output the file permissions of the file 
+   // The file permissions are determined by the bits in st_mode
+   fprintf(output, "%s%s%s%s%s%s%s%s%s%s ",
+      (S_ISDIR(fileInfo.st_mode))  ? "d" : "-",
+      (fileInfo.st_mode & S_IRUSR) ? "r" : "-", 
+      (fileInfo.st_mode & S_IWUSR) ? "w" : "-",
+      (fileInfo.st_mode & S_IXUSR) ? "x" : "-",
+      (fileInfo.st_mode & S_IRGRP) ? "x" : "-",
+      (fileInfo.st_mode & S_IWGRP) ? "w" : "-",
+      (fileInfo.st_mode & S_IXGRP) ? "x" : "-",
+      (fileInfo.st_mode & S_IROTH) ? "r" : "-",
+      (fileInfo.st_mode & S_IWOTH) ? "w" : "-",
+      (fileInfo.st_mode & S_IXOTH) ? "x" : "-"
+   );
+
+   // Output the file information
+   fprintf(output, "%d %s %s %d %s %s\n",
+      fileInfo.st_nlink,                  // hard links number
+      getpwuid(fileInfo.st_uid)->pw_name, // st_uid contains user id getpwuid gets the name from the uid
+      getgrgid(fileInfo.st_gid)->gr_name, // st_gid contains the group id getgrgid gets the group name from the id
+      fileInfo.st_size,                   // file size 
+      formatTime(fileInfo.st_mtim),  // modification time , st_mtim on linux , st_mtimespec on mac
+      name
+   );
+   
 }
 
 void list() {
