@@ -1,6 +1,0 @@
-1 nabhanmaswood staff 0 Nov 21 19 02:26  t1.txt
-1 nabhanmaswood staff 0 Nov 21 19 02:26  t3.txt
-1 nabhanmaswood staff 0 Nov 21 19 02:26  t2.txt
-2 nabhanmaswood staff 64 Nov 21 19 02:26  Dir1
-total 0
-/Users/nabhanmaswood/Desktop/Computer/Projects/Linux-Shell/src/Dir0
