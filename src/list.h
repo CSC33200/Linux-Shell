@@ -22,7 +22,7 @@ char* formatString(FILE* output, struct stat buffer, char* name){
    fprintf(output,"%s ", getpwuid(buffer.st_uid)->pw_name);
    fprintf(output,"%s ",getgrgid(buffer.st_gid)->gr_name);
    fprintf(output,"%d ",buffer.st_size);
-   fprintf(output,"%s ",formatTime(buffer.st_mtimespec));
+   fprintf(output,"%s ",formatTime(buffer.st_mtim));
    fprintf(output,"%s\n",name);
 
 }
